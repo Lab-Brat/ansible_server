@@ -1,3 +1,4 @@
 docker:
   centos_repo: 'https://download.docker.com/linux/centos/$releasever/$basearch/stable'
-  centos_key: 'https://download.docker.com/linux/centos/gpg'
+  centos_key:  'https://download.docker.com/linux/centos/gpg'
+  compose_url: 'https://github.com/docker/compose/releases/download/v2.14.2'

@@ -1,0 +1,5 @@
+---
+- name: Include Docker task.
+  include_tasks:
+    file: docker.yaml
+  tags: docker

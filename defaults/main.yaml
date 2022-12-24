@@ -1,0 +1,3 @@
+docker:
+  centos_repo: 'https://download.docker.com/linux/centos/$releasever/$basearch/stable'
+  centos_key: 'https://download.docker.com/linux/centos/gpg'

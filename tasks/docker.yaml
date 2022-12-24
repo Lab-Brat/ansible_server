@@ -1,0 +1,20 @@
+---
+- name: Add Docker repository.
+  yum_repository:
+    file: docker-ce
+    name: docker-ce
+    description: 'Docker CE Stable - $basearch'
+    baseurl: "{{ docker.centos_repo }}"
+    enabled: 1
+    gpgcheck: 1
+    gpgkey: "{{ docker.centos_key }}"
+
+- name: Install Docker.
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-compose-plugin

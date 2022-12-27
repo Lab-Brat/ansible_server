@@ -6,3 +6,7 @@
 - name: Import Nginx task.
   import_tasks: nginx.yaml
   tags: nginx
+
+- name: Import Disable SElinux task.
+  import_tasks: selinux_disable.yaml
+  tags: selinux_off

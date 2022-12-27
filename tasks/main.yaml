@@ -2,3 +2,7 @@
 - name: Import Docker task.
   import_tasks: docker.yaml
   tags: docker
+
+- name: Import Nginx task.
+  import_tasks: nginx.yaml
+  tags: nginx

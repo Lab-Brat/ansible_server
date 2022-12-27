@@ -1,0 +1,19 @@
+---
+- name: Add Nginx repository.
+  yum_repository:
+    name: nginx
+    description: nginx repo
+    baseurl: "{{ nginx.nginx_repo }}"
+    gpgcheck: false
+    enabled: yes
+
+- name: Install Nginx.
+  dnf:
+    name: nginx
+    state: latest
+
+- name: Start and Enable Nginx.
+  service:
+    name: nginx
+    state: started
+    enabled: yes

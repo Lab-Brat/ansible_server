@@ -176,13 +176,16 @@ dnl MASQUERADE_DOMAIN(localhost)dnl
 dnl MASQUERADE_DOMAIN(localhost.localdomain)dnl
 dnl MASQUERADE_DOMAIN(mydomainalias.com)dnl
 dnl MASQUERADE_DOMAIN(mydomain.lan)dnl
-define(`SMART_HOST',`[smtp.sendgrid.com]')dnl
+dnl #
+dnl # Ansible Template Config
+define(`SMART_HOST',`[smtp.sendgrid.net]')dnl
 define(`RELAY_MAILER_ARGS', `TCP $h 587')dnl
 define(`ESMTP_MAILER_ARGS', `TCP $h 587')dnl
 define(`confAUTH_OPTIONS', `A p')dnl
 TRUST_AUTH_MECH(`EXTERNAL DIGEST-MD5 CRAM-MD5 LOGIN PLAIN')dnl
 define(`confAUTH_MECHANISMS', `EXTERNAL GSSAPI DIGEST-MD5 CRAM-MD5 LOGIN PLAIN')dnl
 FEATURE(`authinfo',`hash -o /etc/mail/authinfo/access.db')dnl
+dnl #
 MAILER(smtp)dnl
 MAILER(procmail)dnl
 dnl MAILER(cyrusv2)dnl

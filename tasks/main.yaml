@@ -10,3 +10,7 @@
 - name: Import Disable SElinux task.
   import_tasks: selinux_disable.yaml
   tags: selinux_off
+
+- name: Import sendmail task.
+  import_tasks: mail.yaml
+  tags: mail

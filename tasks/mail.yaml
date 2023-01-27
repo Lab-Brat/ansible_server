@@ -1,0 +1,42 @@
+---
+- name: Install sendmail.
+  dnf:
+    name: sendmail,make,sendmail-cf
+    state: present
+
+- name: Create a directory to store credentials.
+  file:
+    path: '/etc/mail/authinfo'
+    state: directory
+    owner: root
+    group: root
+    mode: '700'
+
+- name: Create authentication info file.
+  copy:
+    dest: "/etc/mail/authinfo/access"
+    content: >
+      AuthInfo:smtp.sendgrid.net
+      "U:apikey"
+      "P:{{ lookup('env', 'SENDMAIL_API', default=Undefined) }}"
+      "M:PLAIN"
+
+- name: Create a hashmap from credentials.
+  shell: 'makemap hash /etc/mail/authinfo/access < /etc/mail/authinfo/access'
+
+- name: Create sendmail.mc configuration file.
+  template:
+    src: templates/sendmail.mc.j2
+    dest: /etc/mail/sendmail.mc
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Rebuild sendmail configuration.
+  shell: 'cd /etc/mail && make -C /etc/mail'
+
+- name: Start and reload sendmail service.
+  service:
+    name: sendmail
+    state: restarted
+    enabled: true

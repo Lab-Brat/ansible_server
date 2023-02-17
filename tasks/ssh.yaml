@@ -1,0 +1,20 @@
+---
+- name: Start and enable SSH.
+  service:
+    name: sshd
+    state: started
+    enabled: true
+
+- name: Change default port.
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^#*Port\s*'
+    line: "Port {{ ssh.ssh_port }}"
+    backrefs: yes
+  register: ssh_port_has
+
+- name: Restart SSH after port change.
+  service:
+    name: sshd
+    state: restarted
+  when: ssh_port_has.changed

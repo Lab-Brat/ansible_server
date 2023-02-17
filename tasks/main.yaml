@@ -14,3 +14,7 @@
 - name: Import sendmail task.
   import_tasks: mail.yaml
   tags: mail
+
+- name: Import ssh task.
+  import_tasks: ssh.yaml
+  tags: ssh

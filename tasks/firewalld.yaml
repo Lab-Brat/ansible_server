@@ -1,0 +1,16 @@
+---
+- name: Install firewalld.
+  yum:
+    name: firewalld
+    state: latest
+  
+- name: Add SSH port to firewall
+  firewalld:
+    port: "{{ ssh.ssh_port }}/tcp"
+    permanent: true
+    state: enabled
+
+- name: Start firewall
+  service:
+    name: firewalld
+    state: started

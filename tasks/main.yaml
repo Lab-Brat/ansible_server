@@ -18,3 +18,7 @@
 - name: Import ssh task.
   import_tasks: ssh.yaml
   tags: ssh
+
+- name: Import firewalld task.
+  import_tasks: firewalld.yaml
+  tags: firewalld
